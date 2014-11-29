@@ -61,6 +61,7 @@ public class WebSocketNetworkModule implements NetworkModule,
 	private final PipedOutputStream receiverStream = new PipedOutputStream();
 	private final PipedInputStream inputStream;
 
+	private WebSocketClientFactory factory;
 	private WebSocketClient client;
 	private int conTimeout;
 	private Connection connection;
@@ -94,7 +95,7 @@ public class WebSocketNetworkModule implements NetworkModule,
 	 * @return
 	 */
 	protected WebSocketClient createWebSocketClient() {
-		final WebSocketClientFactory factory = new WebSocketClientFactory() {
+		factory = new WebSocketClientFactory() {
 			private final SslContextFactory sslContextFactory = createSslContextFactory();
 			{
 				addBean(sslContextFactory);
@@ -105,6 +106,11 @@ public class WebSocketNetworkModule implements NetworkModule,
 				return sslContextFactory;
 			}
 		};
+		try {
+			factory.start();
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		}
 		final WebSocketClient client = factory.newWebSocketClient();
 		// you can manipulate the client by overriding this method.
 		return client;
@@ -139,8 +145,13 @@ public class WebSocketNetworkModule implements NetworkModule,
 			}
 			client = createWebSocketClient();
 			client.setProtocol(subProtocol);
-			connection = client.open(uri, this, conTimeout,
-					TimeUnit.MILLISECONDS);
+			if (conTimeout > 0) {
+				connection = client.open(uri, this, conTimeout,
+						TimeUnit.SECONDS);
+			} else {
+				// wait until a connection is established
+				connection = client.open(uri, this).get();
+			}
 
 		} catch (ConnectException ex) {
 			// @TRACE 250=Failed to create TCP socket
@@ -174,8 +185,17 @@ public class WebSocketNetworkModule implements NetworkModule,
 		if (connection != null && connection.isOpen()) {
 			connection.close();
 		}
+		if (factory != null && factory.isRunning()) {
+			try {
+				factory.stop();
+			} catch (Exception e) {
+				throw new IllegalStateException(e);
+			}
+			factory.destroy();
+		}
 		connection = null;
 		client = null;
+		factory = null;
 	}
 
 	/**
