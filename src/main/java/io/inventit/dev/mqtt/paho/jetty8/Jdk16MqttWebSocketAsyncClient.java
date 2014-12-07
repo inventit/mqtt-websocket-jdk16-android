@@ -49,7 +49,7 @@ public class Jdk16MqttWebSocketAsyncClient extends MqttWebSocketAsyncClient {
 	 * 
 	 * @param uri
 	 * @param subProtocol
-	 *            Either `mqtt` for MQTT v3 or `mqttv3.1` for MQTT v3.1
+	 *            Either `mqtt` for MQTT v3.1.1 or `mqttv3.1` for MQTT v3.1
 	 * @param options
 	 * @return
 	 */
