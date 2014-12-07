@@ -157,6 +157,6 @@ See [LICENSE](https://github.com/inventit/mqtt-websocket-jdk16-android/blob/mast
 
 # Change History
 
-[1.0.0 : ???? ???, 2014](https://github.com/inventit/mqtt-websocket-jdk16-android/releases/tag/1.0.0)
+[1.0.0 : December 7, 2014](https://github.com/inventit/mqtt-websocket-jdk16-android/releases/tag/1.0.0)
 
 * Initial
