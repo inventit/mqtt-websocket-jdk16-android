@@ -13,7 +13,6 @@ import java.net.ConnectException;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.websocket.WebSocket;
 import org.eclipse.jetty.websocket.WebSocketClient;
 import org.eclipse.jetty.websocket.WebSocketClientFactory;
@@ -95,17 +94,8 @@ public class WebSocketNetworkModule implements NetworkModule,
 	 * @return
 	 */
 	protected WebSocketClient createWebSocketClient() {
-		factory = new WebSocketClientFactory() {
-			private final SslContextFactory sslContextFactory = createSslContextFactory();
-			{
-				addBean(sslContextFactory);
-			}
-
-			@Override
-			public SslContextFactory getSslContextFactory() {
-				return sslContextFactory;
-			}
-		};
+		factory = new WebSocketClientFactory();
+		factory.getSslContextFactory().setTrustAll(false);
 		try {
 			factory.start();
 		} catch (Exception e) {
@@ -114,16 +104,6 @@ public class WebSocketNetworkModule implements NetworkModule,
 		final WebSocketClient client = factory.newWebSocketClient();
 		// you can manipulate the client by overriding this method.
 		return client;
-	}
-
-	/**
-	 * A factory method for {@link SslContextFactory} class, used for
-	 * instantiating a WebSocketClient()
-	 * 
-	 * @return
-	 */
-	protected SslContextFactory createSslContextFactory() {
-		return new SslContextFactory();
 	}
 
 	/**
