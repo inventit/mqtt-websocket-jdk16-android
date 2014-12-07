@@ -34,8 +34,6 @@
 		</repository>
 	</distributionManagement>
 	<properties>
-		<jdk.classifier></jdk.classifier>
-		<target.jdk>1.7</target.jdk>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -130,7 +128,6 @@
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 						<manifestEntries>
-							<Implementation-Build>${buildNumber}</Implementation-Build>
 							<Built-By>InventIt Inc. dev.inventit.io</Built-By>
 						</manifestEntries>
 					</archive>
