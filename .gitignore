@@ -1,3 +1,6 @@
+/target/
+/pom.xml.versionsBackup
+
 *.class
 
 # Mobile Tools for Java (J2ME)
