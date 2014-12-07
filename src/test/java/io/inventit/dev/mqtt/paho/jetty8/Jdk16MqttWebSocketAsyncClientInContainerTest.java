@@ -3,7 +3,6 @@
  */
 package io.inventit.dev.mqtt.paho.jetty8;
 
-import io.inventit.dev.mqtt.paho.MqttWebSocketAsyncClient;
 import io.inventit.dev.mqtt.paho.PahoConsoleLogger;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -39,7 +38,7 @@ public class Jdk16MqttWebSocketAsyncClientInContainerTest {
 		final String userName = "";
 		final String password = "";
 
-		final MqttWebSocketAsyncClient client = new MqttWebSocketAsyncClient(
+		final Jdk16MqttWebSocketAsyncClient client = new Jdk16MqttWebSocketAsyncClient(
 				uriString, clientId, new MemoryPersistence());
 		final MqttConnectOptions options = new MqttConnectOptions();
 		options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);

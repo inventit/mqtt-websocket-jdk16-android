@@ -13,6 +13,7 @@ public class WebSocketNetworkModuleInContainerTest {
 	@Test
 	public void test_connection() throws Exception {
 		final String uriString = "ws://your.broker.com:80/mqtt";
+//		final String uriString = "ws://test.mosquitto.org:8080/mqtt";
 		final String clientId = "my-client-id";
 
 		final WebSocketNetworkModule module = new WebSocketNetworkModule(
