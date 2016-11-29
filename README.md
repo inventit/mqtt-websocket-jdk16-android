@@ -1,3 +1,13 @@
+# Announcement
+
+Eclipse Paho Android Java client has WebSocket support. You can use Paho Android Java client for using MQTT over WebSocket.
+
+Please refer to the project page at https://eclipse.org/paho/clients/android/
+
+The project is EOL. Thank you for all our project users and contributors.
+
+Daisuke Baba
+
 # MQTT over WebSocket  library for JDK1.6/Android
 
 This library offers MQTT client functionality over WebSocket transport with [Paho](http://www.eclipse.org/paho/) library and [Jetty 8](http://www.eclipse.org/jetty/) library.
