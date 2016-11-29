@@ -8,6 +8,8 @@ The project is EOL. Thank you for all our project users and contributors.
 
 Daisuke Baba
 
+---
+
 # MQTT over WebSocket  library for JDK1.6/Android
 
 This library offers MQTT client functionality over WebSocket transport with [Paho](http://www.eclipse.org/paho/) library and [Jetty 8](http://www.eclipse.org/jetty/) library.
